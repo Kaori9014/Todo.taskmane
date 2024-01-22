@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user_rank', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50);
-            $table->string('email',100)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('rank_id')->constrained('ranks');
+            //$table->primary(['user_id','rank_id']);
+            
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user_rank');
     }
 };
