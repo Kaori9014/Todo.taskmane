@@ -9,6 +9,7 @@ class ListController extends Controller
 {
     public function index(Lists $list)
      {
-         return $list->get();
+         return view('lists.index')->with(['lists'=> $list->get()]);
+         
      }
 }
