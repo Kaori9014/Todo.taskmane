@@ -9,7 +9,15 @@ class ListController extends Controller
 {
     public function index(Lists $list)
      {
-         return view('lists.index')->with(['lists'=> $list->get()]);
+         $lists = Lists::all();
+         $data=['lists' => $lists];
+         return view('lists.index',$data)->with(['lists'=> $list->get()]);
+         
          
      }
+    public function show(Lists $lists)
+    {
+        return view('lists.show')->with(['list' => $lists]);
+        
+    }
 }

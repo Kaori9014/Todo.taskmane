@@ -52,7 +52,7 @@ class ListSeeder extends Seeder
             'updated_at' => new DateTime(),
         ]);
          DB::table('lists')->insert([
-            'user_id' => 4,
+            'user_id' => 1,
             'title' => 'title4',
             'memo' => 'memo4',
             'category_id' => 2,
