@@ -9,10 +9,9 @@
 　　    <h1>todolist</h1>
 　　    <div class='lists'>
 　　            @foreach ($lists as $list)
-　　               <div class='list'>
-    　　                <h2 class='title'>{{ $list->title}}</h2>
-    　　                 <h2 class='title'>{{ $list->category->name}}</h2>
-    　              </div>
+    　　            <h2 class'title'>
+    　　                <a href="/lists/{{ $list->id }}">{{ $list->title}}</a> </h2>
+    　　                <h2>{{ $list->priority->name}}</h2> 
 　　      　  　@endforeach
 　　    </div>
 　　</body>

@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/',[ListController::class,'index']);
+Route::get('/lists/{lists}',[ListController::class,'show']);

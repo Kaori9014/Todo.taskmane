@@ -23,7 +23,7 @@ class Lists extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function priorities()
+    public function priority()
     {
         return $this->belongsTo(Priority::class);
     }
