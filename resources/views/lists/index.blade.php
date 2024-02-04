@@ -9,10 +9,26 @@
 　　    <h1>todolist</h1>
 　　    <div class='lists'>
 　　            @foreach ($lists as $list)
-    　　            <h2 class'title'>
-    　　                <a href="/lists/{{ $list->id }}">{{ $list->title}}</a> </h2>
-    　　                <h2>{{ $list->priority->name}}</h2> 
+    　　          <div class'title'>
+    　　              <h2> <a href="/lists/{{ $list->id }}">{{ $list->title}}</a> </h2>
+    　　              <h2>{{ $list->priority->name}}</h2>
+    　　          </div>
+　　      　  　<form action="/lists/{{ $list->id }}" id="form_{{ $list->id }}" method="post">
+　　      　  　    @csrf
+　　      　  　    @method('DELETE')
+　　      　  　    <button type="button" onclick="deletePost({{ $list->id }})">削除</button>
+　　      　  　</form>
 　　      　  　@endforeach
 　　    </div>
+　　            <a href='/todoes/create'>create</a>
+　　          <script>
+　　              function deletePost(id){
+　　                 'use strict'
+　　                   
+　　                 if(confirm('削除すると復元できません。\n本当に削除しますか？')) {
+　　                    document.getElementById(`form_${id}`).submit();      
+　　                 }
+　　              }
+　　          </script>
 　　</body>
 </html>
