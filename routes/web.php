@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ListController;
+use App\Http\Controllers\ActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +24,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::controller(ListController::class)->middleware(['auth'])->group(function(){
+Route::controller(ActivityController::class)->middleware(['auth'])->group(function(){
         Route::get('/','index')->name('index');
-        Route::post('/todoes','todostore')->name('todostore');
         Route::get('/todoes/create','create')->name('create');
-        Route::get('/lists/{lists}','show')->name('show');
-        Route::get('/todoes/{lists}/edit','edit')->name('edit');
-        Route::put('/todoes/{lists}','update')->name('update');
-        Route::delete('/lists/{lists}','delete')->name('delete');
+         Route::get('/todos/{activity}','show')->name('show');
+        Route::post('/todoes','todostore')->name('todostore');
+        Route::get('/todoes/{activity}/edit','edit')->name('edit');
+        Route::put('/todoes/{activity}','update')->name('update');
+        Route::get('/activities/{activity}','delete')->name('delete');
+        Route::delete('/activities/{activity}','delete')->name('delete');
 });
 
 Route::get('/categories/{category}',[CategoryController::class,'index'])->middleware("auth");

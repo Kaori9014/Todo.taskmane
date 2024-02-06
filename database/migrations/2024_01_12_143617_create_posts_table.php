@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('list_id')->constrained();
+            $table->foreignId('activity_id')->constrained();
             $table->string('title',50);
             $table->string('memo',200);
             $table->string('workload');

@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             PrioritySeeder::class,
-            ListSeeder::class,
+            ActivitySeeder::class,
             PostSeeder::class,
         ]);
     }
