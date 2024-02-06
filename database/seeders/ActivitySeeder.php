@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use DateTime;
 
-class ListSeeder extends Seeder
+class ActivitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,7 +18,7 @@ class ListSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('lists')->insert([
+         DB::table('activities')->insert([
             'user_id' => 1,
             'title' => 'title1',
             'memo' => 'memo1',
@@ -29,7 +29,7 @@ class ListSeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
-         DB::table('lists')->insert([
+         DB::table('activities')->insert([
             'user_id' => 2,
             'title' => 'title2',
             'memo' => 'memo2',
@@ -40,7 +40,7 @@ class ListSeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
-         DB::table('lists')->insert([
+         DB::table('activities')->insert([
             'user_id' => 3,
             'title' => 'title3',
             'memo' => 'memo3',
@@ -51,7 +51,7 @@ class ListSeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
-         DB::table('lists')->insert([
+         DB::table('activities')->insert([
             'user_id' => 1,
             'title' => 'title4',
             'memo' => 'memo4',
