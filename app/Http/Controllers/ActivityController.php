@@ -12,9 +12,10 @@ class ActivityController extends Controller
 {
     public function index(Activity $activity)
      {
-         $todos = $activity->get();
+         $todos = Activity::where('category_id', 1)->orderBy('priority_id','ASC')->get();
+         $tasks = Activity::where('category_id', 2)->orderBy('deadline','DESC')->get();
          $data=['activities' => $activity];
-         return view('activities.index',$data)->with(['todos'=> $todos]);
+         return view('activities.index',$data)->with(['todos'=> $todos, 'tasks' => $tasks]);
          
          
      }
@@ -35,7 +36,7 @@ class ActivityController extends Controller
         $input = $request['activity'];
         $input += ['user_id' => Auth::id()];
         $activity->fill($input)->save();
-        return redirect('/activities/'.$activity->id);
+        return redirect('/lists/'.$activity->id);
     }
     
     public function edit(Activity $activity, Category $category, Priority $priority)
@@ -48,7 +49,7 @@ class ActivityController extends Controller
         $input_activity = $request['activity'];
         $input_activity += ['user_id' => Auth::id()];
         $activity->fill($input_activity)->save();
-        return redirect('/activities/' . $activity->id);
+        return redirect('/lists/' .$activity->id);
     }
     
     public function delete(Activity $activity)
@@ -56,4 +57,5 @@ class ActivityController extends Controller
           $activity->delete();
           return redirect('/');
       }
+    
 }

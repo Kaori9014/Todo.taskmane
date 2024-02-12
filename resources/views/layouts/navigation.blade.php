@@ -16,7 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                      <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                        {{ __('index') }}
+                        {{ __('ホーム') }}
+                    </x-nav-link>
+                     <x-nav-link :href="route('achieve.index')" :active="request()->routeIs('achieve.index')">
+                        {{ __('達成投稿リスト') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('achieve.mypost')" :active="request()->routeIs('achieve.mypost')">
+                        {{ __('my達成リスト') }}
                     </x-nav-link>
                 </div>
             </div>

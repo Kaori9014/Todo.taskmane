@@ -13,15 +13,19 @@
     　　
 　　<body>
         <h1>todoリスト新規作成</h1>
-        <form action="/todoes" method="POST">
+        <form action="/lists" method="POST">
             @csrf
             <div class="category">
-                @foreach($categories as $category)
+                
                 <label>
-                <input type='radio' name="activity[category_id]" value={{ $category->id }} >
-                    {{ $category->name }}
+                <input type='radio' name="activity[category_id]" id='category.1' value= 1 checked  >
+                    todo
                 </label>
-                @endforeach
+                <label>
+                <input type='radio' name="activity[category_id]" id='category.2' value= 2 />
+                    task
+                </label>
+               
             </div>
             
             <div class="priority">
@@ -37,15 +41,51 @@
                 <h2>タイトル</h2>
                 <input type="text" name="activity[title]" placeholder="タイトル"/>
             </div>
+            
             <div class="memo">
                 <h2>メモ</h2>
                 <textarea name="activity[memo]" placeholder="メールを送る"></textarea>
             </div>
             
-            <div class="workload">
+            <div class="workload" id="workload" tyle="display: none;">
                 <h2>予想時間</h2>
                 <input type="text" name="activity[workload]" placeholder="1時間"/>
             </div>
+            
+            <div class="deadline" id="deadline" tyle="display: none;">
+                <h2>締切日</h2>
+                <input type="text" name="activity[deadline]" placeholder="2024-02-12 11:00"/>
+            </div>
+            
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var todo = document.getElementById('category.1');
+                var task = document.getElementById('category.2');
+                var workload = document.getElementById('workload');
+                var deadline = document.getElementById('deadline');
+                
+                if (todo.checked)
+                {
+                     deadline.style.display = 'none';
+                     workload.style.display = 'block';
+                }
+                
+                todo.addEventListener('change', function() {
+                    if (this.checked) {
+                        deadline.style.display = 'none';
+                        workload.style.display = 'block';
+                    } 
+                });
+        
+                task.addEventListener('change', function() {
+                    if (this.checked) {
+                        workload.style.display = 'none';
+                        deadline.style.display = 'block';
+                    }
+                });
+            });
+        </script>
+        
 　　      <input type="submit" value="保存"/>
 　　    </form>
 　　    <div class="footer">

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId('activity_id')->constrained();
             $table->string('title',50);
             $table->string('memo',200);
-            $table->string('workload');
-            $table->datetime('deadline');
+            $table->string('workload')->nullable();
+            $table->datetime('deadline')->nullable();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('priority_id')->constrained();
             $table->timestamps();

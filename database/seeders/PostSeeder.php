@@ -20,7 +20,7 @@ class PostSeeder extends Seeder
     {
         DB::table('posts')->insert([
             'user_id' => 1,
-            'activity_id' =>1,
+            'activity_id' => 1,
             'title' => 'title1',
             'memo' => 'memo1',
             'category_id' => 1,
@@ -29,6 +29,7 @@ class PostSeeder extends Seeder
             'deadline' => '2024-01-01 12:00:00',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
+            'newworkload' => '2時間',
         ]);
     }
 }
