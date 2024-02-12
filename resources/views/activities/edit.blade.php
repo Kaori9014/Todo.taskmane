@@ -1,30 +1,23 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title>Todoリスト編集画面</title>
-         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-　　<head>
-　　<body>
-        <h1>todoリスト編集画面</h1>
+ <x-app-layout>
+        <x-slot name="header">
+           {{__('リスト編集画面') }}
+        </x-slot>　    
         <div class="content">
-           <form action="/todoes/{{ $activity->id }}" method="POST">
+           <form action="/lists/{{ $activity->id }}" method="POST">
              @csrf
              @method('PUT')
-             
             <div class="content_category">
-                @foreach($categories as $category)
-                <label>
-                <input type='radio' name="activity[category_id]" value={{ $category->id }} >
-                    {{ $category->name }}
-                </label>
-                @endforeach
+                <input type='radio' name="activity[category_id]" id='category.1' value= 1 <?php if($activity->category_id == '1'){print "checked";}?> />
+                <label>todo</label>
+                <input type='radio' name="activity[category_id]" id='category.2' value= 2 <?php if($activity->category_id == '2'){print "checked";}?>/>
+                 <label>task</label>
+                 
             </div>
+            
             <div class="content_priority">
                 @foreach($priorities as $priority)
                 <label>
-                <input type='radio' name="activity[priority_id]" value={{ $priority->id }} >
+                <input type='radio' name="activity[priority_id]" value="{{ $priority->id }}" <?php if($activity->priority_id == $priority->id){print "checked";}?>/>
                     {{ $priority->name }}
                 </label>
                 @endforeach
@@ -35,16 +28,26 @@
             </div>
             <div class="content_memo">
                 <h2>メモ</h2>
-                <textarea name="activity[memo]" value="{{ $activity->memo  }} "></textarea>
+                <input type="text" name="activity[memo]" value="{{ $activity->memo  }}"/>
             </div>
-            <div class="content_workload">
+            @if($activity->workload)
+               <div class="content_workload">
                 <h2>予想時間</h2>
                 <input type="text" name="activity[workload]" value="{{ $activity->workload}}"/>
-            </div>
+               </div>
+            @endif
+            @if($activity->deadline)
+               <div class="content_deadline">
+                <h2>締切日</h2>
+                <input type="text" name="activity[deadline]" value="{{ $activity->deadline }}"/>
+               </div>
+            @endif
+            
 　　      <input type="submit" value="保存"/>
 　　    </form>
 　　    <div class="footer">
 　　        <a href="/">戻る</a>
 　　    </div>
 　　</body>
+</x-app-layout>
 </html>

@@ -8,15 +8,15 @@
              <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     　　<head>
           <x-slot name="header">
-           {{__('Todoリスト詳細一覧') }}
+           {{__('リスト詳細一覧') }}
           </x-slot>　    
 　　<body>
-　　  <div calss=todos>
-　　    <h1 class='title'>
+　　  <div calss='todos padding: "10px 20px":'>
+　　    <h1 class='title-2xl font-bold mb-4'>
 　　        {{ $activity->title }}
 　　    </h1>
-　　       <h2>メモ</h2>To
-　　       <p>{{ $activity->memo }}</p>
+　　       <h2 class="text-lg font-semibold mb-2">メモ</h2>
+　　       <p class="text-gray-700 mx-10">{{ $activity->memo }}</p>
 　　  
 　　       <h2>カテゴリー</h2>
 　　       <p>{{ $activity->category->name }}</p>
@@ -27,9 +27,12 @@
 　　       <h2>予想時間</h2>
 　　       <p>{{ $activity->workload}}</p>
 　　       
+　　       <h2>締切日</h2>
+　　       <p>{{ $activity->deadline }}</p>
+　　       
 　　    </div>
 　　    <div class="footer">
-　　  　<div class="edit"><a href="/todoes/{{ $activity->id }}/edit">編集</a></div>
+　　  　<div class="edit"><a href="/lists/{{ $activity->id }}/edit">編集</a></div>
 　　        <a href="/">戻る</a>
 　　    </div>
 　   </body>

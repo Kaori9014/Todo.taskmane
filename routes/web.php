@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ActivityController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,13 +27,21 @@ Route::get('/dashboard', function () {
 
 Route::controller(ActivityController::class)->middleware(['auth'])->group(function(){
         Route::get('/','index')->name('index');
-        Route::get('/todoes/create','create')->name('create');
-         Route::get('/todos/{activity}','show')->name('show');
-        Route::post('/todoes','todostore')->name('todostore');
-        Route::get('/todoes/{activity}/edit','edit')->name('edit');
-        Route::put('/todoes/{activity}','update')->name('update');
-        Route::get('/activities/{activity}','delete')->name('delete');
-        Route::delete('/activities/{activity}','delete')->name('delete');
+        Route::get('/create','create')->name('create');
+        Route::get('/lists/{activity}','show')->name('show');
+        Route::post('/lists','todostore')->name('todostore');
+        Route::get('/lists/{activity}/edit','edit')->name('edit');
+        Route::put('/lists/{activity}','update')->name('update');
+        Route::delete('/lists/{activity}','delete')->name('delete');
+});
+
+Route::controller(PostController::class)->middleware(['auth'])->group(function(){
+        Route::get('/listed','index')->name('achieve.index');
+        Route::get('/listed/mypost','mypost')->name('achieve.mypost');
+        Route::get('/listed/{activity}','create')->name('achieve.create');
+        Route::get('/listed/show/{post}','show')->name('achieve.show');
+        Route::post('/listed','store')->name('achieve.store');
+
 });
 
 Route::get('/categories/{category}',[CategoryController::class,'index'])->middleware("auth");

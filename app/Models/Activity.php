@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Activity extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    
     
     protected $fillable=[
         'user_id',
@@ -21,7 +23,8 @@ class Activity extends Model
         'deadline',
         
         ];
-    
+    protected $dates = ['deadline'];
+   
     
     public function category()
     {
